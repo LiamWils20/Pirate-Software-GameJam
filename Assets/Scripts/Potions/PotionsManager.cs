@@ -5,12 +5,15 @@ using UnityEngine;
 public class PotionsManager : MonoBehaviour
 {
     public static PotionsManager instance {get; private set;}
-    
+
+
     #region Potion Variables
     [SerializeField] bool hasPotion; // Used to check if the player has a potion.
     [SerializeField] int potionId; // Used to determin the potion which the player is to learn
-    [SerializeField] float cooldown; 
     #endregion
+
+    [SerializeField] GameObject[] potionBtns;
+    [SerializeField] GameObject[] organisedPotionBtn;
 
     [SerializeField] GameObject player;
     
@@ -26,6 +29,14 @@ public class PotionsManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            potionBtns = GameObject.FindGameObjectsWithTag("PotionsBtn");
+            foreach(GameObject p in potionBtns)
+            {
+                p.SetActive(false);
+            }
+            organisedPotionBtn[0] = potionBtns[2];
+            organisedPotionBtn[1] = potionBtns[1];
+            organisedPotionBtn[2] = potionBtns[0];
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -62,22 +73,29 @@ public class PotionsManager : MonoBehaviour
             if (potionId == 0)
             {
                 gameObject.GetComponent<ByeByePotion>().enabled = true;
+                organisedPotionBtn[0].SetActive(true);
+                potionTeacher.potionId++;
+                
             }
             else if (potionId == 1)
             {
                 gameObject.GetComponent<IncognitoPotion>().enabled = true;
+                organisedPotionBtn[1].SetActive(true);
+                potionTeacher.potionId++;
+                
             }
             else if (potionId == 2)
             {
-                player.AddComponent<TheOlSwitchERoPotion>();
+                gameObject.GetComponent<TheOlSwitchERoPotion>().enabled = true;
+                organisedPotionBtn[2].SetActive(true);
+                potionTeacher.potionId = 0;
+                
             }
             timer = 1;
-            hasPotion = true;
+            //hasPotion = true;
             Invoke(nameof(ResetTimer), 0.5f);
         }
     }
-
-    public float GetPotionStats() { return cooldown; }
 
     public void UpdateHasPotion(bool newBool)
     {

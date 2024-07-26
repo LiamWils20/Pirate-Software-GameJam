@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PotionTeacher : MonoBehaviour
 {
-    public int  potionId;
+    public int potionId;
 }

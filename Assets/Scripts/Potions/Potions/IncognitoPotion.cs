@@ -4,36 +4,37 @@ using UnityEngine;
 
 public class IncognitoPotion : MonoBehaviour
 {
-    [SerializeField] List<Light> levelLightSources = new List<Light>();
+    [SerializeField] GameObject[] levelLightSources;
     [SerializeField] int timer;
-    [SerializeField] bool canFindLight;
+    [SerializeField] bool usingPotion;
 
     // Update is called once per frame
     void Update()
     {
-        if(levelLightSources != null)
+        if(levelLightSources.Length == 0)
         {
-            canFindLight = true;
-        }
-        if (canFindLight)
-        {
-            for (int i = 0; i <= levelLightSources.Count; i++)
-            {
-                GameObject c = GameObject.FindGameObjectWithTag("LightSource");
-                levelLightSources.Add(c.GetComponent<Light>());
-            }
+            levelLightSources = GameObject.FindGameObjectsWithTag("LightSource");
         }
         
 
-        if (timer == 0 && InputHandler.instance.GetDrink())
+        if (timer == 0 && usingPotion)
         {
             timer = 1;
             Invoke(nameof(ResetTimer), 0.5f);
             
+            foreach(GameObject l in levelLightSources)
+            {
+                l.GetComponent<Light>().enabled = false;
+            }
         }
     }
     void ResetTimer()
     {
         timer = 0;
+    }
+
+    public void UpdateBool(bool t)
+    {
+        usingPotion = t;
     }
 }

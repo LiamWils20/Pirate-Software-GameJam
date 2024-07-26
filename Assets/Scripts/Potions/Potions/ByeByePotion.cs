@@ -8,12 +8,13 @@ public class ByeByePotion : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject shadowPlayerPrefab;
     [SerializeField] GameObject spawnedShadowPlayer;
+    [SerializeField] bool usingPotion;
     [SerializeField] int timer;
 
     // Update is called once per frame
     void Update()
     {
-        if (timer == 0 && InputHandler.instance.GetDrink())
+        if (timer == 0 && usingPotion)
         {
             timer = 1;
             Invoke(nameof(ResetTimer), 0.5f);
@@ -43,5 +44,10 @@ public class ByeByePotion : MonoBehaviour
     void ResetTimer()
     {
         timer = 0;
+    }
+
+    public void UpdateBool(bool t)
+    {
+        usingPotion = t;
     }
 }
