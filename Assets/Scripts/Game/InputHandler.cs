@@ -37,6 +37,24 @@ public class InputHandler : MonoBehaviour
         }
         return default;
     }
+
+    public bool GetInteract()
+    {
+        if (input.Player.Interact.IsPressed())
+        {
+            return true;
+        }
+        return default;
+    }
+
+    public bool GetDrink()
+    {
+        if (input.Player.Drink.IsPressed())
+        {
+            return true;
+        }
+        return default;
+    }
     
     #region Enable/Disable
     private void OnEnable()
