@@ -17,7 +17,6 @@ public class ByeByePotion : MonoBehaviour
         if (timer == 0 && usingPotion)
         {
             timer = 1;
-            Invoke(nameof(ResetTimer), 0.5f);
             // Setting "HasPotion" bool to false, as potion is drank
             PotionsManager.instance.UpdateHasPotion(false);
             // Finding the wall object, as this script is spawned
@@ -41,8 +40,9 @@ public class ByeByePotion : MonoBehaviour
             spawnedShadowPlayer.transform.rotation = player.transform.rotation;
         }
     }
-    void ResetTimer()
+    public void ResetPotion()
     {
+        usingPotion = false;
         timer = 0;
     }
 

@@ -23,7 +23,7 @@ public class PotionDrinkable : MonoBehaviour
 
         theOlSwitchERooPotionBtn.onClick.AddListener(() =>
         {
-
+            PotionsManager.instance.GetComponent<TheOlSwitchERoPotion>().UpdateBool(true);
         });
     }
 }

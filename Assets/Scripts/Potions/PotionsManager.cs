@@ -12,8 +12,8 @@ public class PotionsManager : MonoBehaviour
     [SerializeField] int potionId; // Used to determin the potion which the player is to learn
     #endregion
 
-    [SerializeField] GameObject[] potionBtns;
-    [SerializeField] GameObject[] organisedPotionBtn;
+    [SerializeField] GameObject potionBtnsParent;
+    [SerializeField] Transform[] potionBtns;
 
     [SerializeField] GameObject player;
     
@@ -29,14 +29,14 @@ public class PotionsManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            potionBtns = GameObject.FindGameObjectsWithTag("PotionsBtn");
-            foreach(GameObject p in potionBtns)
+            potionBtnsParent = GameObject.FindGameObjectWithTag("PotionsBtn");
+            potionBtns[0] = potionBtnsParent.transform.GetChild(0);
+            potionBtns[1] = potionBtnsParent.transform.GetChild(1);
+            potionBtns[2] = potionBtnsParent.transform.GetChild(2);
+            foreach(Transform p in potionBtns)
             {
-                p.SetActive(false);
+                p.gameObject.SetActive(false);
             }
-            organisedPotionBtn[0] = potionBtns[2];
-            organisedPotionBtn[1] = potionBtns[1];
-            organisedPotionBtn[2] = potionBtns[0];
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -73,21 +73,21 @@ public class PotionsManager : MonoBehaviour
             if (potionId == 0)
             {
                 gameObject.GetComponent<ByeByePotion>().enabled = true;
-                organisedPotionBtn[0].SetActive(true);
+                potionBtns[0].gameObject.SetActive(true);
                 potionTeacher.potionId++;
                 
             }
             else if (potionId == 1)
             {
                 gameObject.GetComponent<IncognitoPotion>().enabled = true;
-                organisedPotionBtn[1].SetActive(true);
+                potionBtns[1].gameObject.SetActive(true);
                 potionTeacher.potionId++;
                 
             }
             else if (potionId == 2)
             {
                 gameObject.GetComponent<TheOlSwitchERoPotion>().enabled = true;
-                organisedPotionBtn[2].SetActive(true);
+                potionBtns[2].gameObject.SetActive(true);
                 potionTeacher.potionId = 0;
                 
             }

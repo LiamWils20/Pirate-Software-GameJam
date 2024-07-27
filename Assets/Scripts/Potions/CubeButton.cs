@@ -16,7 +16,7 @@ public class CubeButton : MonoBehaviour
     void Update()
     {
         num = script.numberBlocksSelected;
-        //hasDrankPotion = script.
+        hasDrankPotion = script.usingPotion;
     }
 
     private void OnMouseUpAsButton()
@@ -25,13 +25,13 @@ public class CubeButton : MonoBehaviour
         {
             if (num == 0)
             {
-                script.IncreaseNumberBlocksSelected();
-                script.UpdateSelectedBlocks(gameObject);
+                script.PotionFunction(gameObject);
+                script.objectPos.Add(gameObject.transform.position);
             }
             else if (num == 1)
             {
-                script.IncreaseNumberBlocksSelected();
-                script.UpdateSelectedBlocks(gameObject);
+                script.PotionFunction(gameObject);
+                script.objectPos.Add(gameObject.transform.position);
             }
         }
     }

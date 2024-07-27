@@ -2613,8 +2613,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasPotion: 0
   potionId: 0
-  potionBtns: []
-  organisedPotionBtn:
+  potionBtnsParent: {fileID: 0}
+  potionBtns:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -2651,6 +2651,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberBlocksSelected: 0
   selectedBlocks: []
+  usingPotion: 0
+  objectPos: []
 --- !u!114 &2013960426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2900,7 +2902,7 @@ GameObject:
   - component: {fileID: 639598332426158761}
   m_Layer: 5
   m_Name: IncognitoPotion
-  m_TagString: PotionsBtn
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2919,7 +2921,7 @@ GameObject:
   - component: {fileID: 4970683943289315531}
   m_Layer: 5
   m_Name: TheOl'SwithERooPotion
-  m_TagString: PotionsBtn
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2938,7 +2940,7 @@ GameObject:
   - component: {fileID: 576288223915043951}
   m_Layer: 5
   m_Name: ByeByePotion
-  m_TagString: PotionsBtn
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3105,7 +3107,7 @@ GameObject:
   - component: {fileID: 8641585744555040564}
   m_Layer: 5
   m_Name: Potion Ui Parent
-  m_TagString: Untagged
+  m_TagString: PotionsBtn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
