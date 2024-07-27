@@ -20,25 +20,13 @@ public class TheOlSwitchERoPotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (numberBlocksSelected >= 2)
+        if (numberBlocksSelected == 2)
         {
-            // Collecting the object positions.
-            //objectOnePos = selectedBlocks[0].transform.position;
-            //objectTwoPos = selectedBlocks[1].transform.position;
-
             // Setting the objects to their new locations
-            //selectedBlocks[0].transform.position = objectPos[0];
-            //selectedBlocks[1].transform.position = objectPos[1];
+            selectedBlocks[0].transform.position = objectPos[1];
+            selectedBlocks[1].transform.position = objectPos[0];
 
-            for(int i = 0; i < selectedBlocks.Count; i++)
-            {
-                selectedBlocks[i].transform.position = objectPos[i];
-                Debug.Log(objectPos[i]);
-            }
-
-
-            // Calling function which resets the potion
-            //ResetPotion();
+            ResetPotion();
         }
     }
 
@@ -55,8 +43,8 @@ public class TheOlSwitchERoPotion : MonoBehaviour
 
     public void ResetPotion()
     {
-        UpdateBool(false);
-        numberBlocksSelected = 0;
+        gameObject.AddComponent<TheOlSwitchERoPotion>();
+        Destroy(this);
     }
 
 }

@@ -17,8 +17,6 @@ public class ByeByePotion : MonoBehaviour
         if (timer == 0 && usingPotion)
         {
             timer = 1;
-            // Setting "HasPotion" bool to false, as potion is drank
-            PotionsManager.instance.UpdateHasPotion(false);
             // Finding the wall object, as this script is spawned
             walkThroughWall = GameObject.Find("WalkThroughWall");
             // Finding original Player Object
@@ -27,7 +25,7 @@ public class ByeByePotion : MonoBehaviour
             // Setting wall to be trigger
             walkThroughWall.GetComponent<BoxCollider>().isTrigger = true;
             // Setting player to trigger, so shadow can walk through player
-            player.GetComponent<BoxCollider>().isTrigger = true;
+           // player.GetComponent<BoxCollider>().isTrigger = true;
             // Setting gravity to false, so player doesn't phase through the
             // floor, when it's set to a trigger
             player.GetComponent<Rigidbody>().useGravity = false;
@@ -36,7 +34,7 @@ public class ByeByePotion : MonoBehaviour
 
             // Spawning the shadow varient of the player
             spawnedShadowPlayer = Instantiate(shadowPlayerPrefab);
-            spawnedShadowPlayer.transform.position = new Vector3 (player.transform.position.x + 2, player.transform.position.y, player.transform.position.z);
+            spawnedShadowPlayer.transform.position = player.transform.position;
             spawnedShadowPlayer.transform.rotation = player.transform.rotation;
         }
     }
@@ -44,6 +42,17 @@ public class ByeByePotion : MonoBehaviour
     {
         usingPotion = false;
         timer = 0;
+
+        walkThroughWall.GetComponent<BoxCollider>().isTrigger = false;
+        //player.GetComponent<BoxCollider>().isTrigger = false;
+        player.GetComponent<Rigidbody>().useGravity = true;
+        player.GetComponent<Player>().enabled = true;
+
+        Destroy(spawnedShadowPlayer);
+        
+
+        //gameObject.AddComponent<ByeByePotion>();
+        //Destroy(this);
     }
 
     public void UpdateBool(bool t)

@@ -8,7 +8,6 @@ public class PotionsManager : MonoBehaviour
 
 
     #region Potion Variables
-    [SerializeField] bool hasPotion; // Used to check if the player has a potion.
     [SerializeField] int potionId; // Used to determin the potion which the player is to learn
     #endregion
 
@@ -68,21 +67,19 @@ public class PotionsManager : MonoBehaviour
 
     void LearnPotion()
     {
-        if (timer == 0 && InputHandler.instance.GetInteract() && !hasPotion)
+        if (timer == 0 && InputHandler.instance.GetInteract())
         {
             if (potionId == 0)
             {
                 gameObject.GetComponent<ByeByePotion>().enabled = true;
                 potionBtns[0].gameObject.SetActive(true);
                 potionTeacher.potionId++;
-                
             }
             else if (potionId == 1)
             {
                 gameObject.GetComponent<IncognitoPotion>().enabled = true;
                 potionBtns[1].gameObject.SetActive(true);
                 potionTeacher.potionId++;
-                
             }
             else if (potionId == 2)
             {
@@ -92,14 +89,8 @@ public class PotionsManager : MonoBehaviour
                 
             }
             timer = 1;
-            //hasPotion = true;
             Invoke(nameof(ResetTimer), 0.5f);
         }
-    }
-
-    public void UpdateHasPotion(bool newBool)
-    {
-        hasPotion = newBool;
     }
 
     void ResetTimer()
