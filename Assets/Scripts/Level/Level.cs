@@ -12,12 +12,16 @@ public class Level : MonoBehaviour
     [Header("Level Attributes")]
     [Tooltip("The player will be teleported here when the section is started")] public Transform playerStartPos;
     public string inGameName;
+    public int[] levelSize = new int[2]{ 0, 0 }; 
     [HideInInspector] public string assetKey;
 
     [Header("References")]
     [HideInInspector] public SceneInstance sceneInstance;
 
-    public void Begin() // sets the difficulty, sets the section and starts it, activates all objectives and enables grapple movement
+    
+    public LevelBlock[][] levelBlocks;
+    
+    public void Begin() //
     {
         
     }
@@ -26,7 +30,6 @@ public class Level : MonoBehaviour
     {
         assetKey = gameObject.scene.name;
     }
-
     void Update() 
     {
         
